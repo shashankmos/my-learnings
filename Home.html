@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+ <center>
+   
+    <h1><b><i>welcome to the GPS tracker world <br>  <br> <marquee direction = "right" style="background-color: aqua; color: hotpink;">Car-X</marquee> </i></b></h1>
+    <h1 id="home"></h1> <br><br>
+    <a href="./DashBord.html" target="_blank"><button style="margin-right: 60Px;" >DashBord</button></a> 
+    <button onclick="Delete()" id="Delete">Delete</button>
+ </center>
+</body>
+<script>
+    function Delete(){
+        localStorage.clear();
+        home.innerHTML="";
+        LogIn()
+    }
+    function LogIn(){
+            window.location.href="./Login.html"
+        }
+    let FirstName=localStorage.getItem("FirstName");
+    let LastName=localStorage.getItem("LastName");
+    let email=localStorage.getItem("storeduserName");
+    let password= localStorage.getItem("storedpassword");
+    let Mobile_number=localStorage.getItem("Mobile_number");
+    let Gender=localStorage.getItem("Gender");
+    let date=localStorage.getItem("date");
+    let State=localStorage.getItem("State");
+
+
+    let home=document.getElementById("home");
+    home.innerHTML="Your Registration successfully!!! <br>"+
+                            "Your Name is :"+FirstName+" "+LastName+ "<br>"+
+                            "Your email is :"+email+"<br>"+
+                            "Your password is :"+password+"<br>"+
+                            "Your Mobile number is :"+Mobile_number+"<br>"+
+                            "Your Gender :"+Gender+"<br>"+
+                            "Your date of birth is : "+date+"<br>"+
+                            "Your State is : "+State+"<br>"
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps Example</title>
+
+</head>
+<body>
+    <H1 style="background-color: aqua; font-size: 50px; padding-left: 20%;">CarX - Vehicle GPS Tracker Company</H1>
+    <div id="map" style="width: 100%; height: 650px;"></div>
+</body>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuZ9kzAM-hOE7YzluKLiG8OvofzjbfewA&callback=initMap" async defer></script>
+<script>
+    function initMap() {
+        let CarX = {lat: 12.913665, lng: 77.604866};
+        let mysore={lat:12.295810, lng:76.639381 };
+        let honnali={lat:14.240500 , lng:75.648598};
+        let davangere={lat:14.464408 , lng:75.921761};
+
+        let mapOptions = {
+            center: CarX,
+            center: mysore,
+            center: honnali,
+            center: davangere,
+            zoom: 10
+        };
+
+        let googlemap = new google.maps.Map(document.getElementById("map"), mapOptions);
+        let image1='car.png';
+        let image2='car2.jpg';
+        let image3='bullcart.png';
+        let image4='truck.png';
+
+        let marker1 = new google.maps.Marker({
+            position: CarX,
+            map: googlemap,
+            icon:image1,
+        });
+            let marker2 = new google.maps.Marker({
+            position: mysore,
+            map: googlemap,
+        });
+        let marker3 = new google.maps.Marker({
+            icon:image2,
+            position: honnali,
+            map: googlemap,
+            icon:image3,
+        });
+        let marker4 = new google.maps.Marker({
+            position:davangere,
+            map: googlemap,
+            icon:image4,
+        });
+        
+    }
+    </script>
+</html>

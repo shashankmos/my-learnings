@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+    <link rel="stylesheet" href="./LogIn.css">
+</head>
+
+<body>
+    <center>
+       
+            <h1>LogIn</h1> <br>
+            <form >
+                <input class="input" id="userName" type="email" placeholder="userName" required> <br><br>
+                <input class="input" id="password" type="password" placeholder="password" required minlength="4"><br><br>
+            </form>
+            <button  id="loginButton" >LogIn</button><br><br>
+            <label for="">New User?</label> <br><br>
+            <a href="./SignUp.html" target="_blank">SignUp</a>
+    </center>
+</body>
+<Script>
+
+    document.getElementById("loginButton").addEventListener("click", function () {
+        // Get the user input value from the user and stored in to the variable
+        let userName = document.getElementById("userName").value;
+        let password = document.getElementById("password").value;
+        password = password.trim();
+        // to get the stored values from the localstorage  and store in to the variables 
+        let storeduserName= localStorage.getItem("storeduserName");
+        let storedpassword= localStorage.getItem("storedpassword");
+        console.log(storeduserName + " " + storedpassword);
+        if (userName === "" && password === "")
+            alert("please enter the userName and password ");
+        else if (userName === "")
+            alert("please enter the userName");
+        else if(password.length < 1)
+        alert("please enter the user password");
+        else if( password.length < 4)
+        alert("Password must be at least 4 characters long ")
+    else if(userName ===storeduserName && password ===storedpassword ){
+    alert("LogIn Successful")
+        home();
+    }
+        else
+            alert(`your userName is ${userName} and your password is ${password} is not valid.
+         You are not a registered user. Please SignIn to continue. `);
+        
+    });
+    function home(){
+            window.location.href="./Home.html"
+        }
+
+</Script>
+
+</html>

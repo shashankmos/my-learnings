@@ -1,0 +1,36 @@
+body{
+    background-color: aqua;
+}
+
+.input{
+width: 20%;
+padding: 12px 20px;
+box-sizing: border-box;
+border-color: red;
+border-radius: 8px;
+}
+.input:hover{
+    transform: scale(1.1);
+}
+#loginButton{
+    width: 10%;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border-color: red;
+    box-sizing: border-box;
+}
+#loginButton:hover{
+    background-color: black;
+    color: aliceblue;
+}
+#Register{
+    width: 10%;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border-color: red;
+    box-sizing: border-box;
+}
+#Register:hover{
+    background-color: black;
+    color: aliceblue;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBord</title>
+    <link rel="stylesheet" href="./DashBord.css">
+</head>
+
+<body>
+    <div id="nav">
+        <nav>
+            <ul>
+                <li><a href="./googleMap.html" target="_blank">JavaScript</a></li>
+                <li><a href="">PHP</a></li>
+                <li><a href="">Bootstrap</a></li>
+                <li><a href="">NodeJS</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="div2">
+        <h1>COUNTDOWN BEGINS</h1>
+        <p id="demo"></p>
+    </div>
+
+    <div class="hero">
+        <div class="container">
+            <div class="clock">
+                <span id="Hours">00</span>
+                <span>:</span>
+                <span id="Minutes">00</span>
+                <span>:</span>
+                <span id="Seconds">00</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let destination = new Date("sep 6,2023 13:00:00").getTime();
+    let time = setInterval(function () {
+        let current = new Date().getTime();
+        let difference = destination - current;
+        //here convert from miliseconds to days
+        let days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        // Here convert from milisecond to Hours
+        let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        // Here convert from milisecond to minutes
+        let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+
+        // Here convert from milisecond to seconds
+        let seconds = Math.floor((difference % (1000 * 60)) / 1000);
+        document.getElementById("demo").innerHTML = days + "days," + hours + "Hrs:" + minutes + "min:" + seconds + "s"
+    }, 1000);
+
+</script>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="./LogIn.css">
+</head>
+
+<body>
+    <center>
+        <form >
+            <label>FirstName :</label>  <input class="input" id="FirstName" type="text" placeholder="FirstName" required> <br> <br> 
+          <label>LastName :</label>  <input class="input" id="LastName" type="text" placeholder="LastName" required> <br> <br> 
+          <label>email :</label><input class="input" id="email" type="email" placeholder="email"> <br><br>
+          <label>password :</label> <input class="input" id="password" type="password" placeholder="password" minlength="6"><br><br>
+
+          <label>Mobile number :</label>
+          <select> 
+            <option value="+91">+91</option>
+            <option value="+92">+92</option>
+            <option value="+93">+93</option>
+            <option value="+94">+94</option>
+            <option value="+95">+95</option>
+        </select>
+          <input class="input" id="Mobile number" type="text" placeholder="Mobile number" maxlength="10"><br><br>
+          <label>Gender :</label> <input  id="m" type="radio" name="Gender" value="Male">Male
+          <input  id="f"  type="radio" name="Gender" value="Female">Female <br> <br> 
+          <label>Date of birth :</label><input class="input" id="date" type="date"><br> <br>
+          <label>State :</label> 
+          <select id="State">
+              <option>Select your State </option>
+              <option>Karnataka</option>
+              <option>Telangana</option>
+              <option>Andhra</option>
+              <option>Kerala</option>
+              <option>Tamilnadu</option>
+          </select><br><br>
+        </form>
+        <button id="Register">Register</button>
+        <h2 id="output"></h2>
+    </center>
+</body>
+<script>
+    document.getElementById("Register").addEventListener("click", function () {
+        // Get the user input value from the user and stored in to the variable
+        let FirstName = document.getElementById("FirstName").value;
+        let LastName = document.getElementById("LastName").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        let Mobile_number = document.getElementById("Mobile number").value;
+        // Here Get the checked value of the gender radio buttons
+        let Gender = document.querySelector('input[name="Gender"]:checked').value; 
+        let date = document.getElementById("date").value;
+        let State = document.getElementById("State").value;
+        // here store the values in to the localstorege by using key and value
+        localStorage.setItem("FirstName",FirstName)
+        localStorage.setItem("LastName",LastName)
+        localStorage.setItem("storeduserName",email)
+        localStorage.setItem("storedpassword",password)
+        localStorage.setItem("Mobile_number",Mobile_number)
+        localStorage.setItem("Gender",Gender)
+        localStorage.setItem("date",date)
+        localStorage.setItem("State",State)
+        let output = document.getElementById("output");
+        output.innerHTML = "Your Registration successfully!!! <br>"+
+                            "Your Name is :"+FirstName+" "+LastName+ "<br>"+
+                            "Your email is :"+email+"<br>"+
+                            "Your password is :"+password+"<br>"+
+                            "Your Mobile number is :"+Mobile_number+"<br>"+
+                            "Your Gender :"+Gender+"<br>"+
+                            "Your date of birth is : "+date+"<br>"+
+                            "Your State is : "+State+"<br>"
+    });
+</script>
+
+</html>
