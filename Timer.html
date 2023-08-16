@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <link rel="stylesheet" href="./Timer.css">
+</head>
+<body>
+    <center>
+        <h1>COUNTDOWN BEGINS</h1>
+    </center>
+        <div class="div">
+            
+            <div id="demo">
+                <span id="days">00</span>
+                <span >:</span>
+                <span id="Hours">00</span>
+                <span >:</span>
+                <span id="Minutes">00</span>
+                <span>:</span>
+                <span id="Seconds">00</span>
+
+
+            </div> >
+        </div>
+   
+</body>
+<script>
+    let destination = new Date("sep 6,2023 13:00:00").getTime();
+    let time = setInterval(function () {
+        let current = new Date().getTime();
+        let difference = destination - current;
+        //here convert from miliseconds to days
+        let days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        // Here convert from milisecond to Hours
+        let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        // Here convert from milisecond to minutes
+        let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+
+        // Here convert from milisecond to seconds
+        let seconds = Math.floor((difference % (1000 * 60)) / 1000);
+        //document.getElementById("demo").innerHTML = days + "days," + hours + "Hrs:" + minutes + "min:" + seconds + "s"
+
+        document.getElementById("days").innerHTML = (days <10?"0":"")+days;
+        document.getElementById("Hours").innerHTML = (hours <10?"0":"")+hours;
+        document.getElementById("Minutes").innerHTML = (minutes <10?"0":"")+minutes;
+        document.getElementById("Seconds").innerHTML = (seconds <10?"0":"")+seconds;
+    }, 1000);
+
+</script>
+</html>

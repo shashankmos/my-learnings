@@ -1,0 +1,85 @@
+body{
+    background: linear-gradient(45deg, #264653, hsl(132, 95%, 50%));
+}
+.div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #15c3ef;
+    background-color: linear-gradient(45deg, #15c3ef, hsl(0, 94%, 46%));
+    width: 40%;
+    height: 110px;
+    border-radius: 20px;
+    padding: 10px;
+}
+ h1{
+    width: 30%;
+    border: double;
+    padding: 15px 15px;
+    background-color: bisque;
+    border-radius: 15px;
+    border-style: groove;
+}
+#demo{
+    width: 100%;
+    height: 100%;
+    background: rgba(235, 0, 255, 0.11);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    backdrop-filter: blur(40px);
+   
+
+}
+#demo span{
+    font-size: 80px;
+    width: 110px;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    color: #ffffff;
+}
+#days::after{
+    content: 'Days';
+    font-size: 18px;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translate(-50%);
+    color: #fff;
+
+}
+#Hours::after{
+    content: 'Hours';
+    font-size: 18px;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translate(-50%);
+    color: #fff;
+
+}
+#Minutes::after{
+    content: 'Minutes';
+    font-size: 18px;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translate(-50%);
+    color: #fff;
+
+}
+#Seconds::after{
+    content: 'Seconds';
+    font-size: 18px;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translate(-50%);
+    color: #fff;
+    
+
+}

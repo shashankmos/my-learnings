@@ -1,56 +1,110 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Google Maps Example</title>
-
+    <style>
+        body{
+            background-color: #1a73e8ff;
+        }
+        #Button {
+            width: 100px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border-style: inherit;
+            box-shadow: -8px -8px 15px rgb(255,255,255,0.1),5px 5px 15px rgb(0,0,0,0.2);
+            background: transparent;
+            border-color: red;
+            cursor: pointer;
+            box-sizing: border-box;
+            background: #05de31;
+        }
+        #Button:hover {
+            background-color: rgba(255, 247, 0, 0.915);
+            transform: scale(1.1);
+        }
+    </style>
 </head>
+
 <body>
-    <H1 style="background-color: aqua; font-size: 50px; padding-left: 20%;">CarX - Vehicle GPS Tracker Company</H1>
-    <div id="map" style="width: 100%; height: 650px;"></div>
+    <H1 style="background-color: aqua; font-size: 50px; padding-left: 20%; padding-right: 10%;">
+        CarX - Vehicle GPS Tracker Company &nbsp;&nbsp;&nbsp;&nbsp;
+        <button id="Button"><a href="./DashBord.html" style="font-size: 17px; text-decoration: none; ">Home</a>
+        </button></H1>
+    
+    <div id="map" style="width: 100%; height: 650px;"/>
 </body>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuZ9kzAM-hOE7YzluKLiG8OvofzjbfewA&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuZ9kzAM-hOE7YzluKLiG8OvofzjbfewA&callback=initMap" async
+    defer></script>
 <script>
     function initMap() {
-        let CarX = {lat: 12.913665, lng: 77.604866};
-        let mysore={lat:12.295810, lng:76.639381 };
-        let honnali={lat:14.240500 , lng:75.648598};
-        let davangere={lat:14.464408 , lng:75.921761};
+        let CarX = { lat: 12.913665, lng: 77.604866 };
+        let mysore = { lat: 12.295810, lng: 76.639381 };
+        let honnali = { lat: 14.240500, lng: 75.648598 };
+        let davangere = { lat: 14.464408, lng: 75.921761 };
+        let Tumakuru={lat:13.347490, lng:77.102173};
+        let Hiriyur={lat: 13.944600, lng:76.614197 };
 
         let mapOptions = {
             center: CarX,
             center: mysore,
             center: honnali,
             center: davangere,
-            zoom: 10
+            center:Tumakuru,
+            center:Hiriyur,
+            zoom: 8
         };
 
         let googlemap = new google.maps.Map(document.getElementById("map"), mapOptions);
-        let image1='car.png';
-        let image2='car2.jpg';
-        let image3='bullcart.png';
-        let image4='truck.png';
+        let image1 = 'car.png';
+        let image2 = 'car2.jpg';
+        let image3 = 'bullcart.png';
+        let image4 = 'truck.png';
 
         let marker1 = new google.maps.Marker({
             position: CarX,
             map: googlemap,
-            icon:image1,
+            icon: image1,
         });
-            let marker2 = new google.maps.Marker({
+        let marker21 = new google.maps.Marker({
             position: mysore,
             map: googlemap,
         });
+        let marker22 = new google.maps.Marker({
+            position:Tumakuru,
+            map: googlemap,
+        });
+        let marker23 = new google.maps.Marker({
+            position:Hiriyur,
+            map: googlemap,
+        });
         let marker3 = new google.maps.Marker({
-            icon:image2,
+            icon: image2,
             position: honnali,
             map: googlemap,
-            icon:image3,
+            icon: image3,
         });
         let marker4 = new google.maps.Marker({
-            position:davangere,
+            position: davangere,
             map: googlemap,
-            icon:image4,
+            icon: image4,
         });
-        
+        let myTrip = [{ lat: 12.913665, lng: 77.604866 },
+        { lat: 12.295810, lng: 76.639381 },
+        { lat: 14.240500, lng: 75.648598 },
+        { lat: 14.464408, lng: 75.921761 },
+        {lat:13.347490, lng:77.102173},
+        {lat: 13.944600, lng:76.614197 }]
+        let roadMap = new google.maps.Polyline({
+            path: myTrip,
+            strokeColor: "#0000FF",
+            strokeOpacity: 0.8,
+            strokeWeight: 4,
+            map: googlemap
+        })
+        roadMap.setMap(map);
     }
-    </script>
+    window.initMap = initMap;
+</script>
+
 </html>
