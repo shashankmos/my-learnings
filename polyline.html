@@ -19,7 +19,7 @@
         let map;
         let marker;
         let position = [12.913665, 77.604866];
-        
+        let movingPolyline = [];
         function initialize() {
             let latlng = new google.maps.LatLng(position[0], position[1]);
             let myOptions = {
@@ -61,15 +61,38 @@
             i = 0;
             deltaLat = (result[0] - position[0]) / numDeltas;
             deltaLng = (result[1] - position[1]) / numDeltas;
+            movingPolyline = []; 
             moveMarker();
+            // drawPolyline();
+
         }
         
+    
+
+function drawPolyline() {
+    let polyline = new google.maps.Polyline({
+        path: movingPolyline,
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+    });
+    polyline.setMap(map);
+}
         function moveMarker() {
+            // position[0] += deltaLat;
+            // position[1] += deltaLng;
+            // let latlng = new google.maps.LatLng(position[0], position[1]);
+            // marker.setTitle("Latitude:"+position[0]+" | Longitude:"+position[1]);
+            // marker.setPosition(latlng);
+
+    
             position[0] += deltaLat;
             position[1] += deltaLng;
             let latlng = new google.maps.LatLng(position[0], position[1]);
-            marker.setTitle("Latitude:"+position[0]+" | Longitude:"+position[1]);
+            movingPolyline.push(latlng); 
             marker.setPosition(latlng);
+            drawPolyline();
             if (i != numDeltas) {
                 i++;
                 setTimeout(moveMarker, delay);
