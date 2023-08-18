@@ -3,15 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Polyline</title>
     <style>
         #mapCanvas {
             width: 100%;
             height: 700px;
         }
+        #Button{
+    width: 150px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border-style: inherit;
+    border-color: red;
+    box-sizing: border-box;
+    background-color: rgb(214, 10, 204);
+}
+#Button:hover{
+    background-color: #419aff;
+    color: aliceblue;
+    transform: scale(1.1);
+}
     </style>
 </head>
-<body>
+<body style="background-color: aqua;">
+    <center >
+        <button id="Button"><a href="./DashBord.html" 
+            style="font-size: 17px; text-decoration: none;">Home</a></button>
+    </center>
+   
     <div id="mapCanvas"></div>
     <!-- can be written like this  -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuZ9kzAM-hOE7YzluKLiG8OvofzjbfewA&callback=initializ"/>  -->

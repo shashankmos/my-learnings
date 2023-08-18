@@ -83,3 +83,16 @@ body{
     
 
 }
+#Button{
+    width: 100px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border-style: inherit;
+    border-color: red;
+    box-sizing: border-box;
+}
+#Button:hover{
+    background-color: #419aff;
+    color: aliceblue;
+    transform: scale(1.1);
+}

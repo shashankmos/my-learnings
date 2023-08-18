@@ -24,7 +24,7 @@ nav ul li a {
     position: absolute;
     background-color: #555;
     margin-top: 5px;
-    width: 200px;
+    width: 250px;
     height: inherit;
     z-index: 1;
 }
@@ -42,7 +42,7 @@ nav ul li a {
 }
 
 .dropdown-content li:hover {
-    margin-left: 10px;
+    margin-left: 5px;
     background-color: #f40b7b;
     color: aquamarine;
     transform: scale(1.1);
