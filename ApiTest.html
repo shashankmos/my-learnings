@@ -1,65 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            margin: auto;
+            width: 60%;
+            border: 3px solid black;
+            padding: 10px;
+            height: 350px;
+            background-color: aqua;
+            border-radius: 10px;
+            border-style: groove;
+        }
+
+        #details ul {
+            text-align: center;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        #details li {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
+
 <body>
-    <div>
-        <h2>The XMLHttpRequest </h2>
-        
-        <p  id="demo"></p>
+    <div id="card">
+        <p id="details"></p>
 
     </div>
+    <br><br>
+    <div id="map" style="height: 550px;"></div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<script>  
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuZ9kzAM-hOE7YzluKLiG8OvofzjbfewA&callback=initMap" async
+    defer></script>
+<script>
+    $(document).ready(function () {
+        let map;
+        const path = [];
 
-// var settings = {
-//   "url": "https://carx.io/api/testRestApi",
-//   "method": "POST",
-//   "timeout": 0,
-//   "headers": {
-//     "Content-Type": "application/x-www-form-urlencoded",
-   
-//   },
-//   "data": {
-//     "key": "5gfgfBFDTDGgfghgfhjhhjhjkhulkihyf445456"
-//   }
-// };
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 12.913665, lng: 77.604866 },
+                zoom: 10
+            });
+        }
+        window.initMap = initMap;
 
-// $.ajax(settings).done(function (response) {
-//   console.log(response);
-// });
-    
-    $(document).ready(function() {  
-       
-        
-        $.ajax({  
+        $.ajax({
             url: 'https://carx.io/api/testRestApi',
 
-            data:{
-                key:'5gfgfBFDTDGgfghgfhjhhjhjkhulkihyf445456',
+            data: {
+                key: '5gfgfBFDTDGgfghgfhjhhjhjkhulkihyf445456',
             },
-            
-            
-           
-            type: 'POST',  
-            
-            dataType: 'json',  
-             
-            success: function(data) {  
-                
-               document.getElementById("demo").innerHTML= data;
-               console.log(data);  
-                
-            },  
-            error: function(data ) {  
-               // console.log(data);       
-            }  
-            
-        });  
-     });  
-</script> 
+
+            type: 'POST',
+
+            dataType: 'json',
+
+            success: function (data) {
+                details(data);
+                drawPolyline(data[0]["analysis"]["speed_json"])
+            },
+            error: function (data) {
+                console.log("error");       
+            }
+
+        });
+
+        function details(data) {
+
+            const keysToPrint = ["_id", "Org", "carId", "vehicle", "vehicleNumber", "driverName",
+                "distance", "duration", "time", "stopTime"];
+
+            let text = "<ul>";
+            for (let i = 0; i < data.length; i++) {
+                const obj = data[i];
+                for (const key of keysToPrint) {
+                    if (obj.hasOwnProperty(key)) {
+                        text += "<li>" + key + ": " + obj[key] + "</li>";
+                    }
+                }
+            }
+            text += "</ul>";
+            document.getElementById("details").innerHTML = text;
+        }
+        function drawPolyline(speedJsonList) {
+
+            var tripData = JSON.parse(speedJsonList)
+
+            for (var key in tripData) {
+                var latlon = tripData[key]
+                let lat = latlon.lat;
+                let lon = latlon.lon;
+                path.push(new google.maps.LatLng(lat, lon));
+            }
+            const polyline = new google.maps.Polyline({
+                path: path,
+                geodesic: true,
+                strokeColor: "#0000FF",
+                strokeOpacity: 0.8,
+                strokeWeight: 4,
+            });
+            polyline.setMap(map);
+            let bnd = getBoundsForPoly(polyline)
+            map.fitBounds(bnd);
+            const startMarker = new google.maps.Marker({
+                position: path[0],
+                map: map,
+                title: "Start"
+            });
+            const endMarker = new google.maps.Marker({
+                position: path[path.length - 1],
+                map: map,
+                title: "End"
+            });
+        }   
+        function getBoundsForPoly(poly) {
+            var bounds = new google.maps.LatLngBounds;
+            poly.getPath().forEach(function (latLng) {
+                bounds.extend(latLng);
+            });
+            return bounds;
+        }
+    });  
+</script>
+
+
 </html>
